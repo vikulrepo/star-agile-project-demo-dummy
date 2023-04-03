@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.6.3'
+        maven 'Maven'
     }
     stages {
         stage('Checkout') {
@@ -11,14 +11,14 @@ pipeline {
         }
         stage('Build') {
             steps {
-                withMaven(maven: 'Maven 3.6.3') {
+                withMaven(maven: 'Maven') {
                     sh 'mvn clean package'
                 }
             }
         }
         stage('Test') {
             steps {
-                withMaven(maven: 'Maven 3.6.3') {
+                withMaven(maven: 'Maven') {
                     sh 'mvn test'
                 }
             }
