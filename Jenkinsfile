@@ -1,34 +1,22 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven'
+        maven 'Maven 3.6.3'
     }
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/kranthi619/star-agile-project-demo-dummy.git'
+               checkout scm
             }
         }
         stage('Build') {
             steps {
-                withMaven(maven: 'Maven') {
-                    sh 'mvn clean package'
-                }
+                sh 'mvn clean package'
             }
         }
         stage('Test') {
             steps {
-                withMaven(maven: 'Maven') {
-                    sh 'mvn test'
-                }
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'systemctl stop tomcat9'
-                sh 'rm -rf /var/lib/tomcat9/webapps/*'
-                sh 'cp target/*.war /var/lib/tomcat9/webapps/'
-                sh 'systemctl start tomcat9'
+                sh 'mvn test'
             }
         }
         stage('Verify') {
