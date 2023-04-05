@@ -6,7 +6,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-               checkout scm
+               sh 'echo passed'
+                //git branch: 'master', url:'https://github.com/kranthi619/star-agile-project-demo-dummy'
             }
         }
         stage('Build') {
